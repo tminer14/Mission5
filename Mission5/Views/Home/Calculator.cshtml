@@ -8,12 +8,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <!-- bring in the jquery to be used-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>Calculator</h2>
         <p>(Because I know you'd want to pay to hear me talk about this)</p>
+
+        <!--set up the labels and buttons for input-->
         <label for="hours">Enter number of hours:</label>
         <input type="number" id="hours" min="0" step="0.1">
         <p class="error" id="error-message" style="display: none;">Please enter a valid positive number.</p>
@@ -28,22 +31,31 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $("#calculate").click(function() {
-                let hours = parseFloat($("#hours").val());
-                let rate = parseFloat($("#rate").val());
-                let errorMessage = $("#error-message");
 
+        // Wait until the document (HTML page) is fully loaded before running the script
+        $(document).ready(function() {
+
+            // When the button with ID "calculate" is clicked, execute the function
+            $("#calculate").click(function() {
+
+                // Get the values from the input fields and convert them to floating-point numbers
+                let hours = parseFloat($("#hours").val()); 
+                let rate = parseFloat($("#rate").val());  
+                let errorMessage = $("#error-message");    
+
+                // Check if the hours input is invalid (not a number or less than/equal to zero)
                 if (isNaN(hours) || hours <= 0) {
-                    errorMessage.show();
-                    $("#total").text("0.00");
+                    errorMessage.show();   
+                    $("#total").text("0.00"); 
                 } else {
-                    errorMessage.hide();
-                    let total = (hours * rate).toFixed(2);
-                    $("#total").text(total);
+                    errorMessage.hide();  // Hide the error message if input is valid
+                    let total = (hours * rate).toFixed(2); 
+                    $("#total").text(total); 
                 }
             });
         });
+
     </script>
+
 </body>
 </html>
